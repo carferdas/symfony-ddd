@@ -1,0 +1,25 @@
+doctrine:
+    dbal:
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '16'
+        connections:
+            custom:
+                driver: '%env(DATABASE_DRIVER)%'
+                host: '%env(DATABASE_HOST)%'
+                port: '%env(DATABASE_PORT)%'
+                dbname: '%env(DATABASE_NAME)%'
+                user: '%env(DATABASE_USER)%'
+                password: '%env(DATABASE_PASSWORD)%'
+                wrapper_class: App\Shared\Infrastructure\Doctrine\ConnectionWrapper
+        default_connection: custom
+
+    orm:
+        default_entity_manager: custom
+        entity_managers:
+            custom:
+                auto_mapping: false
+                connection: custom
+                validate_xml_mapping: true
+        controller_resolver:
+            auto_mapping: false
